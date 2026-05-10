@@ -33,7 +33,7 @@ $$
 
 ### 2.2 SIGReg 正则化
 
-SIGReg（Sketch Isotropic Gaussian Regularizer）通过随机投影近似约束嵌入分布接近各向同性高斯。设$A \in \mathbb{R}^{d \times M}$为列归一化随机方向，尺度参数$\tau \in [0,3]$，理想高斯特征函数$\phi(\tau) = \exp(-\tau^2/2)$，则统计量可写为
+SIGReg（Sketch Isotropic Gaussian Regularizer）通过随机投影近似约束嵌入分布接近各向同性高斯。设随机方向向量$a \sim \text{Unif}(\mathbb{S}^{d-1})$（实践中采样$M$个方向并归一化），尺度参数$\tau \in [0,3]$，理想高斯特征函数$\phi(\tau) = \exp(-\tau^2/2)$，则统计量可写为
 $$
 \mathcal{S}(E) = \mathbb{E}_{a}\left[ \big(\mathbb{E}[\cos(\tau a^\top e)] - \phi(\tau)\big)^2 + \big(\mathbb{E}[\sin(\tau a^\top e)]\big)^2 \right].
 $$
@@ -144,7 +144,6 @@ A_{\text{eq}} & 0
 \begin{bmatrix}
 y \\ \lambda
 \end{bmatrix}
-
 =
 \begin{bmatrix}
 -q \\ b_{\text{eq}}
