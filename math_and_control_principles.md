@@ -13,7 +13,7 @@ $$
 $$
 \Delta e_t = e_t - e_{t-1}, \quad s_t = \begin{bmatrix} e_t \\ \Delta e_t \end{bmatrix} \in \mathbb{R}^{2d}.
 $$
-当不存在$t-1$时，使用$\Delta e_t = 0$。这与训练中“Markov state = embedding + delta”的实现一致。
+对于序列的第一个时间步（例如$t=0$），使用$\Delta e_t = 0$。这与训练中“Markov state = embedding + delta”的实现一致。
 
 ## 2. JEPA 与潜在动力学学习
 
@@ -33,7 +33,7 @@ $$
 
 ### 2.2 SIGReg 正则化
 
-SIGReg（Sketch Isotropic Gaussian Regularizer）通过随机投影近似约束嵌入分布接近各向同性高斯。设随机方向向量$a \sim \text{Unif}(\mathbb{S}^{d-1})$（实践中采样$M$个方向并归一化），尺度参数$\tau \in [0,3]$，理想高斯特征函数$\phi(\tau) = \exp(-\tau^2/2)$，则统计量可写为
+SIGReg（Sketch Isotropic Gaussian Regularizer）通过随机投影近似约束嵌入分布接近各向同性高斯。设随机方向向量$a$从单位球面$\mathbb{S}^{d-1}$均匀采样（实践中采样$M$个方向并归一化），尺度参数$\tau \in [0,3]$，理想高斯特征函数$\phi(\tau) = \exp(-\tau^2/2)$，则统计量可写为
 $$
 \mathcal{S}(E) = \mathbb{E}_{a}\left[ \big(\mathbb{E}[\cos(\tau a^\top e)] - \phi(\tau)\big)^2 + \big(\mathbb{E}[\sin(\tau a^\top e)]\big)^2 \right].
 $$
